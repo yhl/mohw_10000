@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta property="og:title" content="每家戶每人每月生活費試算"/>
+    <meta property="og:description" content="提供一個試算，試算結果僅供參考"/>
+    <meta property="og:type" content="website"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous" />
+    <title>每家戶每人每月生活費試算</title>
+  </head>
+  <body>
+    <div class="container">
+        <blockquote class="blockquote">
+            <p class="mb-0">每家戶每人每月生活費試算</p>
+            <footer class="blockquote-footer">資料來源: <cite title="衛生福利部"><a href="https://www.mohw.gov.tw/cp-16-53062-1.html" target="_blank">衛生福利部</a></cite></footer>
+        </blockquote>
+        <h3>試算結果僅供參考</h3>
+        <hr/>
+        <form>
+            <div class="form-group">
+              <label for="city">所在地</label>
+              <select class="form-control" id="city" required>
+                <option value="9" selected>非六都之縣市</option>
+                <option value="1">臺北市</option>
+                <option value="2">新北市</option>
+                <option value="3">桃園市</option>
+                <option value="4">臺中市</option>
+                <option value="5">臺南市</option>
+                <option value="6">高雄市</option>
+                <option value="7">金門縣、連江縣</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="d">D = 家戶人數* (單位：人)</label>
+                <input type="number" class="form-control" id="d" min="1" value="3" placeholder="" aria-describedby="dHelp" required>
+                <small id="aHelp" class="form-text text-muted">泛指住在一起的人之總數</small>
+            </div>
+            <div class="form-group">
+                <label for="a">A = 家戶月平均收入* (單位：元)</label>
+                <input type="number" class="form-control" id="a" min="0" value="22000" placeholder="" aria-describedby="aHelp" required>
+                <small id="aHelp" class="form-text text-muted">家戶內所有人109年1至4月總收入 ÷ 4個月</small>
+            </div>
+            <div class="form-group">
+                <label for="b">B = 家戶總存款數* (單位：元)</label>
+                <input type="number" class="form-control" id="b" min="0" value="500000" placeholder="" aria-describedby="bHelp" required>
+                <small id="aHelp" class="form-text text-muted">截至109年4月30日止，戶內所有人存款餘額加總</small>
+            </div>
+            <div class="form-group">
+                <label for="c">C = 家戶內每人存款免納入計算總額* (單位：元)</label>
+                <input type="number" class="form-control" id="c" min="0" value="450000" placeholder="" aria-describedby="cHelp" required disabled>
+                <small id="cHelp" class="form-text text-muted">家戶內每人15萬元*家戶人數</small>
+            </div>
+            <div class="form-group">
+              <label for="e">E = 每家戶每人每月生活費* (單位：元)</label>
+              <p>試算結果如下</p>
+              <textarea class="form-control" id="e" rows="3" aria-describedby="eHelp" disabled></textarea>
+              <small id="eHelp" class="form-text text-muted">E = (A - (B-C)) / D，當 C > B 時，B - C 直接以 0 計算；若 C < B 話，則 B - C</small>
+            </div>
+            <button type="button" class="btn btn-primary" id="btn">試算</button>
+        </form>
+        <hr/>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th colspan="4">各地區每人每月最低生活費情形 (單位：元)</th>
+                </tr>
+                <tr>
+                    <th scope="col">地區別</th>
+                    <th scope="col">每人每月最低生活費</th>
+                    <th scope="col">每人每月最低生活費1.5倍</th>
+                    <th scope="col">每人每月最低生活費2倍</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">非六都之縣市</th>
+                    <td>12,388</td>
+                    <td>18,582</td>
+                    <td>24,776</td>
+                </tr>
+                <tr>
+                    <th scope="row">臺北市</th>
+                    <td>17,005</td>
+                    <td>25,508</td>
+                    <td>34,010</td>
+                </tr>
+                <tr>
+                    <th scope="row">新北市</th>
+                    <td>15,500</td>
+                    <td>23,250</td>
+                    <td>31,000</td>
+                </tr>
+                <tr>
+                    <th scope="row">桃園市</th>
+                    <td>15,281</td>
+                    <td>22,922</td>
+                    <td>30,562</td>
+                </tr>
+                <tr>
+                    <th scope="row">臺中市</th>
+                    <td>14,596</td>
+                    <td>21,894</td>
+                    <td>29,192</td>
+                </tr>
+                <tr>
+                    <th scope="row">臺南市</th>
+                    <td>12,388</td>
+                    <td>18,582</td>
+                    <td>24,776</td>
+                </tr>
+                <tr>
+                    <th scope="row">高雄市</th>
+                    <td>13,099</td>
+                    <td>19,649</td>
+                    <td>26,198</td>
+                </tr>
+                <tr>
+                    <th scope="row">金門縣、連江縣</th>
+                    <td>11,648</td>
+                    <td>17,472</td>
+                    <td>23,296</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container bg-light">
+        <p class="lead">Just.崩潰.ME 製作 <small><a href="mailto:justbk.1234@gmail.com">justbk.1234@gmail.com</a></small></p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            let d = $('#d');
+            let a = $('#a');
+            let b = $('#b');
+            let c = $('#c');
+            let e = $('#e');
+            let res = '';
+            let number = 3;
+            let res_text = '';
+
+            $("#d").on('change', function(){
+                number = parseInt($('#d').val());
+                $('#c').val(number * 150000);
+            })
+
+            $("#btn").on('click', function(){
+ 
+                res = '';
+                res_text = '';
+                let city = $('#city').val();
+                if(city == 9){  //非六都之縣市
+                    x = [12388, 18582, 24776];
+
+                }else if(city == 1){  //臺北市
+                    x = [17005, 25508, 34010];
+
+                }else if(city == 2){  //新北市
+                    x = [15500, 23250, 31000];
+
+                }else if(city == 3){  //桃園市
+                    x = [15281, 22922, 30562];
+
+                }else if(city == 4){  //臺中市
+                    x = [14596, 21894, 29192];
+
+                }else if(city == 5){  //臺南市
+                    x = [12388, 18582, 24776];
+
+                }else if(city == 6){  //高雄市
+                    x = [13099, 19649, 26198];
+
+                }else if(city == 7){  //金門縣、連江縣
+                    x = [11648, 17472, 23296];
+                }
+
+                a = parseInt($('#a').val());
+                b = parseInt($('#b').val());
+                c = parseInt($('#c').val());
+                d = parseInt($('#d').val());
+				
+				/*結果E = (A - (B-C)) / D，當 C > B 時，B - C 直接以 0 計算；若 C < B 話，則 B - C */
+                
+                if(c > b){
+                    res = Math.round(parseFloat(a / d));
+                }else if(b > c){
+                    res = Math.round(parseFloat((a + (b-c)) / d));
+                }
+                if(res < parseInt(x[1])){
+                    res_text = '每家戶每人每月生活費約 '+res+' 元，預計可核發 1-3 萬元';
+                }else if(res >= parseInt(x[1]) && res <= parseInt(x[2])){
+                    res_text = '每家戶每人每月生活費約 '+res+' 元，預計可核發 1 萬元';
+                }else if(res > parseInt(x[2])){
+                    res_text = '每家戶每人每月生活費約 '+res+' 元，可能不符合本次擴大紓困方案資格';
+                }
+                e.val(res_text);
+            });
+        });
+    </script>
+  </body>
+</html>
