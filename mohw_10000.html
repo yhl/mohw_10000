@@ -191,12 +191,14 @@
                 }else if(b>c){
                     res = Math.round(parseFloat((a + (b-c)) / d));
                 }
-                if(res < parseInt(x[1])){
-                    res_text = '每家戶每人每月生活費約 '+res+' 元，預計可核發 1-3 萬元';
+                if(res <= parseInt(x[0])){
+                    res_text = '每家戶每人每月生活費約 '+res+' 元，預計可核發 3 萬元';
+                }else if(res >= parseInt(x[0]) && res <= parseInt(x[1])){
+                    res_text = '每家戶每人每月生活費約 '+res+' 元，預計可核發 2 萬元';
                 }else if(res >= parseInt(x[1]) && res <= parseInt(x[2])){
                     res_text = '每家戶每人每月生活費約 '+res+' 元，預計可核發 1 萬元';
                 }else if(res > parseInt(x[2])){
-                    res_text = '每家戶每人每月生活費約 '+res+' 元，可能不符合本次擴大紓困方案資格';
+                    res_text = '每家戶每人每月生活費約 '+res+' 元，可能不符合本次擴大急難紓困方案資格';
                 }
                 e.val(res_text);
             });
